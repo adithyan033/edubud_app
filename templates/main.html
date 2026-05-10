@@ -7,7 +7,11 @@
 </head>
 <body bgcolor="sky blue">
     {% include 'navabar.html' %}
-
+    {% if messages %}
+    {%for message in messages %}
+    <li>{{message}}</li>
+    {% endfor %}
+    {% endif %}
 
     {% block content%}
 
