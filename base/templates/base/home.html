@@ -5,7 +5,7 @@
     .home-container
     {
         display: grid;
-        grid-template-columns: 1fr 3fr;
+        grid-template-columns: 1fr 3fr 1fr;
     }
 </style>
 
@@ -45,10 +45,21 @@
         </div>
         
     </div> 
+    
+    <div>
+        <h3>Recent Activites</h3>
+        <hr>
+        {% for message in room_messages%}
+        <div>
+            <small>@{{message.user}}  {{message.created|timesince}}</small>
+        </div>
+
+        {% endfor %}
+    </div>
+
+
 
 </div>
 
 {% endblock %}
 
-
- <!--/room/{{room.id}}-->
