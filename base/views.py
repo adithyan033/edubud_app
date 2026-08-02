@@ -12,14 +12,6 @@ from .forms import RoomForm
 # Create your views here.
 
 
-'''
-rooms = [
-    {'id':1,'name':'I know somrthing'},
-     {'id':2,'name':'I know about django'},
-      {'id':3,'name':'I know dynamic'},
-]
-'''
-
 def loginPage(request):
     page='login'
     if request.user.is_authenticated:
@@ -111,7 +103,9 @@ def createRoom(request):
     if request.method=='POST':
         form=RoomForm(request.POST)
         if form.is_valid():
-            form.save()
+            room = form.save(commit=False)
+            room.host = request.user
+            room.save()
             return redirect('home')
     context={'form':form}
     return render(request,'base/room_form.html',context)
